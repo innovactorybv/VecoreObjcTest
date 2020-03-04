@@ -1,0 +1,60 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)
+// swift-module-flags: -target x86_64-apple-ios10.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name VecoreSDK
+import CoreBluetooth
+import Foundation
+import Swift
+@_exported import VecoreSDK
+@objc open class VecoreSDK : ObjectiveC.NSObject {
+  @objc public static var sharedInstance: VecoreSDK.VecoreSDK {
+    get
+    }
+  @objc public func setDebugHandler(_ logHandler: @escaping (Swift.String) -> Swift.Void)
+  @objc public func authorize(token: Swift.String)
+  @objc public func authorize(token: Swift.String, completionHandler: ((Swift.Bool) -> Swift.Void)?)
+  @objc public func connectToVehicle(vehicleID: Swift.Int, reservationID: Swift.Int, userID: Swift.Int, statusHandler: ((Swift.Int, VecoreSDK.VecoreConnectionStatus) -> Swift.Void)?)
+  @objc public func connectToVehicle(vehicleID: Swift.Int, reservationID: Swift.Int, userID: Swift.Int, connectionType: VecoreSDK.VecoreVehicleConnectionType, statusHandler: ((Swift.Int, VecoreSDK.VecoreConnectionStatus) -> Swift.Void)?)
+  @objc public func requestConnectionStatusUpdate()
+  @objc public func sendVehicleCommand(_ command: VecoreSDK.VecoreVehicleCommand)
+  @objc public func disconnectFromVehicle(vehicleID: Swift.Int)
+  @objc deinit
+}
+@objc public enum VecoreVehicleConnectionType : Swift.Int {
+  case Unknown = 0
+  case GeproBoxBluetooth
+  case AxaLockBluetooth
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum VecoreConnectionStatus : Swift.Int {
+  case Unavailable = 0
+  case Disconnected
+  case Searching
+  case Connecting
+  case Authenticating
+  case Connected
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum VecoreVehicleCommand : Swift.Int {
+  case Lock = 0
+  case Unlock
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+}
+extension VecoreSDK.VecoreVehicleConnectionType : Swift.Hashable {}
+extension VecoreSDK.VecoreVehicleConnectionType : Swift.RawRepresentable {}
+extension VecoreSDK.VecoreConnectionStatus : Swift.Hashable {}
+extension VecoreSDK.VecoreConnectionStatus : Swift.RawRepresentable {}
+extension VecoreSDK.VecoreVehicleCommand : Swift.Equatable {}
+extension VecoreSDK.VecoreVehicleCommand : Swift.Hashable {}
+extension VecoreSDK.VecoreVehicleCommand : Swift.RawRepresentable {}

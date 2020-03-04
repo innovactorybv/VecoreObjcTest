@@ -1,0 +1,11 @@
+framework module VecoreSDK {
+  umbrella header "VecoreSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module VecoreSDK.Swift {
+    header "VecoreSDK-Swift.h"
+    requires objc
+}
